@@ -4220,12 +4220,12 @@
     "11155111": {
       "events": {},
       "links": {},
-      "address": "0x76e28Af15D581eAb4ed4c910C9Dd560ADAe4B4AD",
-      "transactionHash": "0x528f9ca98d4b5513fe28b1f989b05430cc571669f454fb44abd11460fd7e979e"
+      "address": "0x3c4C9a29cf3B78a0B5077d613557b03A718f52b4",
+      "transactionHash": "0xe8762e6d9d3e12bbd8435a4b54b586d83472dd0c1419c172697f133027dbe5de"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-06-26T16:54:04.865Z",
+  "updatedAt": "2024-06-26T17:15:05.474Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

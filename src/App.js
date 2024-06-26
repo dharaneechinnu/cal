@@ -10,7 +10,7 @@ function App() {
   const [web3, setWeb3] = useState(null);
   const [account, setAccount] = useState('');
   const [contract, setContract] = useState(null);
-  const contractAddress = '0x76e28Af15D581eAb4ed4c910C9Dd560ADAe4B4AD'; // Replace with your deployed contract address
+  const contractAddress = '0x3c4C9a29cf3B78a0B5077d613557b03A718f52b4'; // Replace with your deployed contract address
 
   useEffect(() => {
     const init = async () => {
@@ -33,20 +33,20 @@ function App() {
     init();
   }, []);
 
-  const handleOperation = async() => {
+  const handleOperation = async (operation) => {
     try {
       if (!contract) {
         console.error("Contract is not initialized");
         return;
       }
-      console.log(`Calling  method with params:`, sum1, sum2);
-      const receipt = await contract.method.add(parseInt(sum1), parseInt(sum2)).send({ from: account });
+      console.log(`Calling ${operation} method with params:`, sum1, sum2);
+      const receipt = await contract.methods[operation](parseInt(sum1), parseInt(sum2)).send({ from: account });
       console.log("Transaction receipt:", receipt);
-      const total = await contract.method.total().call();
+      const total = await contract.methods.total().call();
       setResult(total);
       console.log("Result:", total);
     } catch (error) {
-      console.error(`Error executing  method: `, error);
+      console.error(`Error executing ${operation} method: `, error);
     }
   };
 
@@ -56,8 +56,10 @@ function App() {
       <form onSubmit={(e) => e.preventDefault()}>
         A: <input type="number" className='sum1' value={sum1} onChange={(e) => setsum1(e.target.value)} /><br />
         B: <input type="number" className='sum1' value={sum2} onChange={(e) => setsum2(e.target.value)} /><br />
-        <button onClick={() => handleOperation()}>Add</button>
-       
+        <button onClick={() => handleOperation('add')}>Add</button>
+        <button onClick={() => handleOperation('sub')}>Subtract</button>
+        <button onClick={() => handleOperation('mul')}>Multiply</button>
+        <button onClick={() => handleOperation('div')}>Divide</button>
       </form>
       {result !== null && <h2>Result: {result.toString()}</h2>}
     </div>
